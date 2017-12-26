@@ -10,16 +10,13 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading">Article Overview</div>
 
                     <div class="panel-body">
 
-                        You are logged in!
+                        //Articles go here
                     </div>
                 </div>
             </div>
