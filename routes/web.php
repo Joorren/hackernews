@@ -11,16 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home',  function () {
-    return view('welcome');
-})->name('home');
-
-Route::get('/instructies', function () {
-    return view('instructies');
-})->name('instructies');
+Route::view('/', 'welcome');
+Route::view('/home', 'welcome');
+Route::view('/instructies', 'instructies');
