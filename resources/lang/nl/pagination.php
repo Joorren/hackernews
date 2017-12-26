@@ -16,4 +16,21 @@ return [
     'previous' => '&laquo; Vorige',
     'next' => 'Volgende &raquo;',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Navigation Menu Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used for navigation in the menu.
+    |
+    */
+
+    'home' => 'Home',
+    'addArticle' => 'Artikel toevoegen',
+    'instructions' => 'Instructies',
+    'login' => 'Inloggen',
+    'register' => 'Registreer',
+    'logout' => 'Uitloggen',
+    'toggleNav' => 'Toggle Navigatie',
+
 ];
