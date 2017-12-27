@@ -28,8 +28,32 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {$posts = DB::table('posts')->get();
+    {
+        $posts = DB::table('posts')->get();
+        $users = DB::table('users')->get();
+        $votes = DB::table('votes')->get();
 
-        return view('home', ['posts' => $posts]);
+        return view('home', ['posts' => $posts, 'users' => $users, 'votes' => $votes]);
+    }
+
+    static public function articlePoster($user_id) {
+        $poster = DB::table('users')->where('id', $user_id)->first()->name;
+
+        return $poster;
+    }
+
+    static public function countVotes($post_id) {
+        $upVotes =        DB::table('votes')->where('post_id', $post_id)->where('vote',  1)->count();
+        $downVotes =    DB::table('votes')->where('post_id', $post_id)->where('vote', -1)->count();
+
+        $points = $upVotes - $downVotes;
+
+        if ($points === 1) {
+            return $points . ' point';
+        }
+        else {
+            return $points . ' points';
+        }
+
     }
 }
