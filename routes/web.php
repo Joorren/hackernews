@@ -13,8 +13,6 @@
 
 Auth::routes();
 
-Route::view('/', 'welcome');
-//Route::view('/home', 'welcome');
-Route::view('/instructies', 'instructies');
-
+Route::get('/', 'PostController@index');
 Route::get('/home', 'PostController@index');
+Route::view('/instructies', 'instructies');
