@@ -16,4 +16,4 @@ Auth::routes();
 Route::get('/', 'PostController@index');
 Route::get('/home', 'PostController@index');
 Route::view('/instructies', 'instructies');
-Route::view('/vote/{vote}', 'vote', ['vote' => '{vote}']);
+Route::post('/vote/{vote}', 'CheckVoteController@index');
