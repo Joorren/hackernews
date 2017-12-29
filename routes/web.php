@@ -19,3 +19,6 @@ Route::view('/instructies', 'instructies');
 Route::post('/vote/{vote}', 'CheckVoteController@index');
 Route::get('/comments/{id}', 'CommentController@index');
 Route::post('/comments/add', 'CommentController@addComment');
+Route::get('/comments/edit/{id}', 'CommentController@editIndex');
+Route::post('/comments/edit', 'CommentController@editComment');
+Route::post('/comments/delete/{id}', 'CommentController@deleteComment');
