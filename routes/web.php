@@ -17,3 +17,5 @@ Route::get('/', 'PostController@index');
 Route::get('/home', 'PostController@index');
 Route::view('/instructies', 'instructies');
 Route::post('/vote/{vote}', 'CheckVoteController@index');
+Route::get('/comments/{id}', 'CommentController@index');
+Route::post('/comments/add', 'CommentController@addComment');
