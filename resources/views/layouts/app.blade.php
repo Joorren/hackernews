@@ -41,9 +41,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{url('/home')}}">@lang('pagination.home')</a></li>
-                        @if(Auth::check())
+                        @auth
                             <li><a href="{{url('/home')}}">@lang('pagination.addArticle')</a></li>
-                        @endif
+                        @endauth
 
                         <li><a href="{{url('/instructies')}}">@lang('pagination.instructions')</a></li>
 
