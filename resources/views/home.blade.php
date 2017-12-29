@@ -36,7 +36,13 @@
                                         <a href="{{$post->url}}" class="urlTitle">{{$post->name}}</a>
                                     </div>
                                     <div class="info">
-                                        {{call_user_func('\App\Http\Controllers\PostController::countVotes', $post->id)}}  | posted by {{call_user_func('\App\Http\Controllers\PostController::articlePoster', $post->user_id)}} | <a href="#">1 comment</a>
+                                        {{call_user_func('\App\Http\Controllers\PostController::countVotes', $post->id)}}
+                                        | posted by
+                                        {{call_user_func('\App\Http\Controllers\PostController::articlePoster', $post->user_id)}}
+                                        |
+                                        <a href="{{url("/comments/$post->id")}}">
+                                            {{call_user_func('\App\Http\Controllers\PostController::countComments', $post->user_id)}}
+                                        </a>
                                     </div>
                                 </li>
                             @endforeach

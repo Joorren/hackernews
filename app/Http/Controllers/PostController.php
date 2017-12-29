@@ -30,10 +30,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = DB::table('posts')->get();
-        $users = DB::table('users')->get();
-        $votes = DB::table('votes')->get();
 
-        return view('home', ['posts' => $posts, 'users' => $users, 'votes' => $votes]);
+        return view('home', ['posts' => $posts]);
     }
 
     static public function articlePoster($user_id) {
@@ -49,11 +47,27 @@ class PostController extends Controller
         $points = $upVotes - $downVotes;
 
         if ($points === 1) {
-            return $points . ' point';
+            $points .= ' point';
         }
         else {
-            return $points . ' points';
+            $points .= ' points';
         }
 
+        return $points;
+
+    }
+
+    static public function countComments($post_id) {
+        $comments = DB::table('comments');
+        $count = $comments->where('post_id', $post_id)->count();
+
+        if ($count === 1) {
+            $count .= ' comment';
+        }
+        else {
+            $count .= ' comments';
+        }
+
+        return $count;
     }
 }
