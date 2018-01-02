@@ -59,7 +59,7 @@ class CommentController extends Controller
     }
 
     public function editComment() {
-        $return = redirect('/lol');
+        $return = redirect('/');
         if (isset($_POST) && $_POST) {
             $comment_id = $_POST['comment_id'];
             $content = $_POST['body'];
@@ -77,6 +77,17 @@ class CommentController extends Controller
     }
 
     public function deleteComment($comment_id) {
-
+        $return = redirect("/");
+        if (isset(Auth::user()->id)) {
+            $comment = DB::table('comments')->where('id', $comment_id)->first();
+            if (count($comment)) {
+                $post = $comment->post_id;
+                if ($comment->user_id === Auth::id()) {
+                    DB::table('comments')->where('id', $comment_id)->delete();
+                }
+                $return = redirect("comments/$post");
+            }
+        }
+        return $return;
     }
 }
