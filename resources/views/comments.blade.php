@@ -40,7 +40,7 @@
                             | posted by
                             {{call_user_func('\App\Http\Controllers\PostController::articlePoster', $post->user_id)}}
                             |
-                            {{call_user_func('\App\Http\Controllers\PostController::countComments', $post->user_id)}}
+                            {{call_user_func('\App\Http\Controllers\PostController::countComments', $post->id)}}
                         </div>
                         <div class="comments">
                             <ul>
