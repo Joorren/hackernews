@@ -42,7 +42,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="{{url('/home')}}">@lang('pagination.home')</a></li>
                         @auth
-                            <li><a href="{{url('/home')}}">@lang('pagination.addArticle')</a></li>
+                            <li><a href="{{url('/article/add')}}">@lang('pagination.addArticle')</a></li>
                         @endauth
 
                         <li><a href="{{url('/instructies')}}">@lang('pagination.instructions')</a></li>
