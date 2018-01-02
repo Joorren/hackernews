@@ -42,7 +42,7 @@
                                         {{call_user_func('\App\Http\Controllers\PostController::articlePoster', $post->user_id)}}
                                         |
                                         <a href="{{url("/comments/$post->id")}}">
-                                            {{call_user_func('\App\Http\Controllers\PostController::countComments', $post->user_id)}}
+                                            {{call_user_func('\App\Http\Controllers\PostController::countComments', $post->id)}}
                                         </a>
                                     </div>
                                 </li>
