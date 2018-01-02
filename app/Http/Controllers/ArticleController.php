@@ -33,13 +33,16 @@ class ArticleController extends Controller
         if (isset($_POST['title']) && isset($_POST['url'])) {
             $title=$_POST['title'];
             $url=$_POST['url'];
-            if ($_POST['title'] === "") {
+            if ($title === "") {
                 array_push($errors, 'The title field is required.');
             }
-            if ($_POST['url'] === "") {
+            if (strlen($title) > 255) {
+                array_push($errors, 'The title may not be greater than 255 characters.');
+            }
+            if ($url === "") {
                 array_push($errors, 'The url field is required.');
             }
-            if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            elseif (!filter_var($url, FILTER_VALIDATE_URL)) {
                 array_push($errors, 'The url format is invalid.');
             }
         }
