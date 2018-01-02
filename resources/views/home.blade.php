@@ -39,11 +39,14 @@
                                     <div class="info">
                                         {{call_user_func('\App\Http\Controllers\PostController::countVotes', $post->id)}}
                                         | posted by
-                                        {{call_user_func('\App\Http\Controllers\PostController::articlePoster', $post->user_id)}}
+                                        {{$poster = call_user_func('\App\Http\Controllers\PostController::articlePoster', $post->user_id)}}
                                         |
                                         <a href="{{url("/comments/$post->id")}}">
                                             {{call_user_func('\App\Http\Controllers\PostController::countComments', $post->id)}}
                                         </a>
+                                        @if( isset(Auth::user()->name) && $poster === Auth::user()->name)
+                                            <a href="{{url("/article/edit/$post->id")}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                                        @endif
                                     </div>
                                 </li>
                             @endforeach
