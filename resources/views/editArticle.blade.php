@@ -28,7 +28,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
                         Edit article
-                            <a href="{{url("comments/delete/$article->id")}}" class="btn btn-danger btn-xs pull-right">
+                            <a href="{{url("article/delete/$article->id")}}" class="btn btn-danger btn-xs pull-right">
                             <i class="fa fa-btn fa-trash" title="delete"></i> delete article
                         </a>
                     </div>

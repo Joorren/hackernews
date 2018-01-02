@@ -122,4 +122,20 @@ class ArticleController extends Controller
         }
         return $return;
     }
+
+    public function deleteArticle($article_id) {
+    $return = redirect("/");
+    if (isset(Auth::user()->id)) {
+        $article = DB::table('posts')->where('id', $article_id)->first();
+        if (count($article)) {
+            $title = $article->name;
+            if ($article->user_id === Auth::id()) {
+                DB::table('posts')->where('id', $article_id)->delete();
+            }
+            session(['success' => "Article '$title' deleted succesfully."]);
+            $return = redirect("/");
+        }
+    }
+    return $return;
+}
 }

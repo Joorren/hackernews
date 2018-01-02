@@ -26,3 +26,4 @@ Route::get('/article/add', 'ArticleController@index');
 Route::post('/article/add', 'ArticleController@postArticle');
 Route::get('/article/edit/{id}', 'ArticleController@editIndex');
 Route::post('/article/edit/', 'ArticleController@editArticle');
+Route::get('/article/delete/{id}', 'ArticleController@deleteArticle');
