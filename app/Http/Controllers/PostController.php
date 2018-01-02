@@ -27,7 +27,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    static public function index()
     {
         $posts = DB::table('posts')->get();
 
@@ -59,7 +59,7 @@ class PostController extends Controller
 
     static public function countComments($post_id) {
         $comments = DB::table('comments');
-        $count = $comments->where('post_id', $post_id)->count();
+        $count = $comments->where('post_id', "$post_id")->count();
 
         if ($count === 1) {
             $count .= ' comment';

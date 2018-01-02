@@ -5,10 +5,20 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
 
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        <strong>Whoops! Something went wrong!</strong>
+                        <br>
+                        <br>
+                        <ul>
+                            @foreach(session('error') as $error)
+                                <li>
+                                    {{ $error }}
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
+                    <?php session()->forget('error'); ?>
                 @endif
 
                 <div class="breadcrumb">

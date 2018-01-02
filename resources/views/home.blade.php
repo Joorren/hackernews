@@ -5,10 +5,11 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
 
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
+                @if (session('success'))
+                    <div class="bg-success">
+                        {{session('success')}}
                     </div>
+                    <?php session()->forget('success'); ?>
                 @endif
 
                 <div class="panel panel-default">
