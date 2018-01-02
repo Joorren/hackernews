@@ -50,7 +50,7 @@
                                         <div class="comment-info">
                                             Posted by {{$poster = call_user_func('\App\Http\Controllers\PostController::articlePoster', $comment->user_id)}}
                                             on {{$comment->created_at}}
-                                            @if($poster === Auth::user()->name)
+                                            @if( isset(Auth::user()->name) && $poster === Auth::user()->name)
                                                 <a href="{{url("comments/edit/$comment->id")}}" class="btn btn-primary btn-xs edit-btn">edit</a>
 
                                                 <a href="{{url("comments/delete/$comment->id")}}" class="btn btn-danger btn-xs edit-btn">
