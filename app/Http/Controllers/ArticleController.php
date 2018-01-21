@@ -143,20 +143,25 @@ class ArticleController extends Controller
         if (isset($_POST) && $_POST) {
             if (isset($_POST['delete']) && $_POST['delete'] !== "") {
                 $article_id = $_POST['delete'];
-            }
-        }
-        if (isset(Auth::user()->id)) {
-            $article = DB::table('posts')->where('id', $article_id)->get();
-            if (count($article)) {
-                $title = $article[0]->name;
-                if ($article[0]->user_id === Auth::id()) {
-                    DB::table('posts')->where('id', $article_id)->delete();
+                if (isset(Auth::user()->id)) {
+                    $article = DB::table('posts')->where('id', $article_id)->get();
+                    if (count($article)) {
+                        $title = $article[0]->name;
+                        if ($article[0]->user_id === Auth::id()) {
+                            DB::table('posts')->where('id', $article_id)->delete();
+                        }
+                        session(['success' => "Article '$title' deleted succesfully."]);
+                        $return = redirect("/");
+                    }
+                    $return = redirect("/");
                 }
-                session(['success' => "Article '$title' deleted succesfully."]);
-                $return = redirect("/");
             }
-            $return = redirect("/");
+            if (isset($_POST['cancel']) && $_POST['cancel'] !== "") {
+                $article_id = $_POST['cancel'];
+                $return = redirect("/article/edit/$article_id");
+            }
         }
+
         return $return;
     }
 }
