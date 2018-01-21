@@ -53,6 +53,7 @@ class CommentController extends Controller
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
+            session(['success' => "Comment added succesfully."]);
         }
 
         return redirect($returnPath);
@@ -70,8 +71,9 @@ class CommentController extends Controller
                     'content' => $content,
                     'updated_at' => date('Y-m-d H:i:s'),
                 ]);
+                session(['success' => "Comment edited succesfully."]);
+                $return = redirect("comments/edit/$comment_id");
             }
-            $return = redirect("comments/$post");
         }
         return $return;
     }
@@ -79,10 +81,10 @@ class CommentController extends Controller
     public function deleteComment($comment_id) {
         $return = redirect("/");
         if (isset(Auth::user()->id)) {
-            $comment = DB::table('comments')->where('id', $comment_id)->first();
+            $comment = DB::table('comments')->where('id', $comment_id)->get();
             if (count($comment)) {
-                $post = $comment->post_id;
-                if ($comment->user_id === Auth::id()) {
+                $post = $comment[0]->post_id;
+                if ($comment[0]->user_id === Auth::id()) {
                     DB::table('comments')->where('id', $comment_id)->delete();
                 }
                 $return = redirect("comments/$post");

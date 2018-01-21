@@ -11,6 +11,13 @@
                     </div>
                 @endif
 
+                @if (session('success'))
+                    <div class="bg-success">
+                        {{session('success')}}
+                    </div>
+                    <?php session()->forget('success'); ?>
+                @endif
+
                 <div class="breadcrumb">
                     <a href="{{url('/')}}">← back to overview</a>
                 </div>

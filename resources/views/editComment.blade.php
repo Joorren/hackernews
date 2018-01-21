@@ -5,15 +5,16 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
 
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-
                 <div class="breadcrumb">
                     <a href="{{url("comments/$comment->post_id")}}">← back to overview</a>
                 </div>
+
+                @if (session('success'))
+                    <div class="bg-success">
+                        {{ session('success') }}
+                    </div>
+                    <?php session()->forget('success'); ?>
+                @endif
 
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
