@@ -21,6 +21,25 @@
                     <?php session()->forget('error'); ?>
                 @endif
 
+                @if ($confirm)
+                    <div class="bg-danger clearfix">
+                        Are you sure you want to delete this article?
+
+                        <form action="{{url("article/delete")}}" method="POST" class="pull-right">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                            <button name="delete" class="btn btn-danger" value="{{$article->id}}">
+                                <i class="fa fa-btn fa-trash" title="delete"></i> confirm delete
+                            </button>
+
+                            <button name="cancel" class="btn" value="{{$article->id}}">
+                                <i class="fa fa-btn fa-trash" title="delete"></i> cancel
+                            </button>
+
+                        </form>
+                    </div>
+                @endif
+
                 <div class="breadcrumb">
                     <a href="{{url("/")}}">← back to overview</a>
                 </div>

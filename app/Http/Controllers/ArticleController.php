@@ -26,9 +26,9 @@ class ArticleController extends Controller
         return view('addArticle');
     }
 
-    public function editIndex($article_id) {
+    public function editIndex($article_id, $confirm = false) {
         $article = DB::table('posts')->where('id', $article_id)->first();
-        return view('editArticle', ['article' => $article]);
+        return view('editArticle', ['article' => $article, 'confirm' => $confirm]);
     }
 
     public function postArticle()
@@ -124,18 +124,39 @@ class ArticleController extends Controller
     }
 
     public function deleteArticle($article_id) {
-    $return = redirect("/");
-    if (isset(Auth::user()->id)) {
-        $article = DB::table('posts')->where('id', $article_id)->get();
-        if (count($article)) {
-            $title = $article[0]->name;
-            if ($article[0]->user_id === Auth::id()) {
-                DB::table('posts')->where('id', $article_id)->delete();
+        $return = redirect("/");
+        if (isset(Auth::user()->id)) {
+            $article = DB::table('posts')->where('id', $article_id)->get();
+            if (count($article)) {
+                $title = $article[0]->name;
+                if ($article[0]->user_id === Auth::id()) {
+                    $return = ArticleController::editIndex($article_id, true);
+                }
             }
-            session(['success' => "Article '$title' deleted succesfully."]);
+        }
+        return $return;
+    }
+
+    public function confirmDelete() {
+        $return = redirect("/");
+        $article_id = 0;
+        if (isset($_POST) && $_POST) {
+            if (isset($_POST['delete']) && $_POST['delete'] !== "") {
+                $article_id = $_POST['delete'];
+            }
+        }
+        if (isset(Auth::user()->id)) {
+            $article = DB::table('posts')->where('id', $article_id)->get();
+            if (count($article)) {
+                $title = $article[0]->name;
+                if ($article[0]->user_id === Auth::id()) {
+                    DB::table('posts')->where('id', $article_id)->delete();
+                }
+                session(['success' => "Article '$title' deleted succesfully."]);
+                $return = redirect("/");
+            }
             $return = redirect("/");
         }
+        return $return;
     }
-    return $return;
-}
 }
