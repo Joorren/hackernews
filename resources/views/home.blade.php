@@ -20,18 +20,39 @@
                             @foreach($posts as $post)
                                 <li>
                                     <div class="vote">
-                                        <form action="{{url('/vote/up')}}" method="POST" class="form-inline upvote">
+                                        @if ($post->user_id === Auth::id())
+                                            <div class="form-inline upvote">
+                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="can't upvote your own articles"></i>
+                                            </div>
+                                        @elseif(\App\Http\Controllers\CheckVoteController::CheckVote($post->id, 1))
+                                            <div class="form-inline upvote">
+                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="You can only upvote once"></i>
+                                            </div>
+                                        @else
+                                            <form action="{{url('/vote/up')}}" method="POST" class="form-inline upvote">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <button name="article_id" value="{{$post->id}}">
                                                 <i class="fa fa-btn fa-caret-up" title="upvote"></i>
                                             </button>
                                         </form>
-                                        <form action="{{url('/vote/down')}}" method="POST" class="form-inline downvote">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <button name="article_id" value="{{$post->id}}">
-                                                <i class="fa fa-btn fa-caret-down" title="downvote"></i>
-                                            </button>
-                                        </form>
+                                        @endif
+
+                                        @if ($post->user_id === Auth::id())
+                                            <div class="form-inline downvote">
+                                                <i class="fa fa-btn fa-caret-down disabled downvote" title="can't downvote your own articles"></i>
+                                            </div>
+                                        @elseif(\App\Http\Controllers\CheckVoteController::CheckVote($post->id, -1))
+                                            <div class="form-inline downvote">
+                                                <i class="fa fa-btn fa-caret-down disabled downvote" title="You can only downvote once"></i>
+                                            </div>
+                                        @else
+                                            <form action="{{url('/vote/down')}}" method="POST" class="form-inline downvote">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <button name="article_id" value="{{$post->id}}">
+                                                    <i class="fa fa-btn fa-caret-down" title="downvote"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </div>
                                     <div class="url">
                                         <a href="{{$post->url}}" class="urlTitle">{{$post->name}}</a>

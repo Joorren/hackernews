@@ -63,4 +63,14 @@ class CheckVoteController extends Controller
         }
         return redirect('/home');
     }
+
+    static public function CheckVote($article_id, $type) {
+        $userId = Auth::id();
+        $vote = DB::table('votes')->where('post_id', $article_id)->where('user_id', $userId)->value('vote');
+
+        if ($vote === $type)  { $return = true; }
+                                else { $return = false; }
+
+        return $return;
+    }
 }
