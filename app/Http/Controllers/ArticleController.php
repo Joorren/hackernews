@@ -128,8 +128,8 @@ class ArticleController extends Controller
     if (isset(Auth::user()->id)) {
         $article = DB::table('posts')->where('id', $article_id)->get();
         if (count($article)) {
-            $title = $article->name;
-            if ($article->user_id === Auth::id()) {
+            $title = $article[0]->name;
+            if ($article[0]->user_id === Auth::id()) {
                 DB::table('posts')->where('id', $article_id)->delete();
             }
             session(['success' => "Article '$title' deleted succesfully."]);
