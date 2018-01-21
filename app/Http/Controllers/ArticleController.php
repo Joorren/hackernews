@@ -126,7 +126,7 @@ class ArticleController extends Controller
     public function deleteArticle($article_id) {
     $return = redirect("/");
     if (isset(Auth::user()->id)) {
-        $article = DB::table('posts')->where('id', $article_id)->first();
+        $article = DB::table('posts')->where('id', $article_id)->get();
         if (count($article)) {
             $title = $article->name;
             if ($article->user_id === Auth::id()) {
