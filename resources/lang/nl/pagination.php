@@ -32,5 +32,6 @@ return [
     'register' => 'Registreer',
     'logout' => 'Uitloggen',
     'toggleNav' => 'Toggle Navigatie',
+    'overview' => 'Terug naar overzicht',
 
 ];

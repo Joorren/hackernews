@@ -6,7 +6,7 @@
             <div class="col-md-10 col-md-offset-1">
 
                 <div class="breadcrumb">
-                    <a href="{{url("comments/$comment->post_id")}}">← back to overview</a>
+                    <a href="{{url("comments/$comment->post_id")}}">← @lang('pagination.overview')</a>
                 </div>
 
                 @if (session('success'))
@@ -18,9 +18,9 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
-                        Edit comment
+                        @lang('article.editComment')
                         <a href="{{url("comments/delete/$comment->id")}}" class="btn btn-danger btn-xs edit-btn pull-right">
-                            <i class="fa fa-btn fa-trash" title="delete"></i> delete
+                            <i class="fa fa-btn fa-trash" title="delete"></i> @lang('article.delete')
                         </a>
                     </div>
 
@@ -30,7 +30,7 @@
 
                             <!-- Article data -->
                             <div class="form-group">
-                                <label for="body" class="col-sm-3 control-label">Comment</label>
+                                <label for="body" class="col-sm-3 control-label">@lang('article.editComment')</label>
 
                                 <div class="col-sm-6">
                                     <textarea name="body" id="body" class="form-control">{{$comment->content}}</textarea>
@@ -43,7 +43,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6">
                                     <button type="submit" class="btn btn-default">
-                                        <i class="fa fa-pencil-square-o"></i> edit comment
+                                        <i class="fa fa-pencil-square-o"></i> @lang('article.editComment')
                                     </button>
                                 </div>
                             </div>

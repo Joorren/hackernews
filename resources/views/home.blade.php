@@ -13,7 +13,7 @@
                 @endif
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">Article Overview</div>
+                    <div class="panel-heading">@lang('article.overview')</div>
 
                     <div class="panel-body">
                         <ul class="article-overview">
@@ -22,34 +22,34 @@
                                     <div class="vote">
                                         @if ($post->user_id === Auth::id())
                                             <div class="form-inline upvote">
-                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="can't upvote your own articles"></i>
+                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="@lang('article.upVoteOwner')"></i>
                                             </div>
                                         @elseif(\App\Http\Controllers\CheckVoteController::CheckVote($post->id, 1))
                                             <div class="form-inline upvote">
-                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="You can only upvote once"></i>
+                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="@lang('article.upVoteOnce')"></i>
                                             </div>
                                         @else
                                             <form action="{{url('/vote/up')}}" method="POST" class="form-inline upvote">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <button name="article_id" value="{{$post->id}}">
-                                                <i class="fa fa-btn fa-caret-up" title="upvote"></i>
+                                                <i class="fa fa-btn fa-caret-up" title="@lang('article.upVote')"></i>
                                             </button>
                                         </form>
                                         @endif
 
                                         @if ($post->user_id === Auth::id())
                                             <div class="form-inline downvote">
-                                                <i class="fa fa-btn fa-caret-down disabled downvote" title="can't downvote your own articles"></i>
+                                                <i class="fa fa-btn fa-caret-down disabled downvote" title="@lang('article.downVoteOwner')"></i>
                                             </div>
                                         @elseif(\App\Http\Controllers\CheckVoteController::CheckVote($post->id, -1))
                                             <div class="form-inline downvote">
-                                                <i class="fa fa-btn fa-caret-down disabled downvote" title="You can only downvote once"></i>
+                                                <i class="fa fa-btn fa-caret-down disabled downvote" title="@lang('article.downVoteOnce')"></i>
                                             </div>
                                         @else
                                             <form action="{{url('/vote/down')}}" method="POST" class="form-inline downvote">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <button name="article_id" value="{{$post->id}}">
-                                                    <i class="fa fa-btn fa-caret-down" title="downvote"></i>
+                                                    <i class="fa fa-btn fa-caret-down" title="@lang('article.downVote')"></i>
                                                 </button>
                                             </form>
                                         @endif
@@ -59,14 +59,14 @@
                                     </div>
                                     <div class="info">
                                         {{call_user_func('\App\Http\Controllers\PostController::countVotes', $post->id)}}
-                                        | posted by
+                                        | @lang('article.poster')
                                         {{$poster = call_user_func('\App\Http\Controllers\PostController::articlePoster', $post->user_id)}}
                                         |
                                         <a href="{{url("/comments/$post->id")}}">
                                             {{call_user_func('\App\Http\Controllers\PostController::countComments', $post->id)}}
                                         </a>
                                         @if( isset(Auth::user()->name) && $poster === Auth::user()->name)
-                                            <a href="{{url("/article/edit/$post->id")}}" class="btn btn-primary btn-xs edit-btn">edit</a>
+                                            <a href="{{url("/article/edit/$post->id")}}" class="btn btn-primary btn-xs edit-btn">@lang('article.edit')</a>
                                         @endif
                                     </div>
                                 </li>

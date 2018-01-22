@@ -7,7 +7,7 @@
 
                 @if (session('error'))
                     <div class="alert alert-danger">
-                        <strong>Whoops! Something went wrong!</strong>
+                        <strong>@lang('errors.failed')</strong>
                         <br>
                         <br>
                         <ul>
@@ -22,12 +22,12 @@
                 @endif
 
                 <div class="breadcrumb">
-                    <a href="{{url("/")}}">← back to overview</a>
+                    <a href="{{url("/")}}">← @lang('pagination.overview')</a>
                 </div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
-                        Add article
+                        @lang('article.addArticle')
                     </div>
 
                     <div class="panel-body">
@@ -36,7 +36,7 @@
 
                             <!-- Article data -->
                             <div class="form-group">
-                                <label for="article-title" class="col-sm-3 control-label">Title (max. 255 characters)</label>
+                                <label for="article-title" class="col-sm-3 control-label">@lang('article.title')</label>
 
                                 <div class="col-sm-6">
                                     <input type="text" name="title" id="article-title" class="form-control">
@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="article-url" class="col-sm-3 control-label">URL</label>
+                                <label for="article-url" class="col-sm-3 control-label">@lang('article.url')</label>
 
                                 <div class="col-sm-6">
                                     <input type="text" name="url" id="article-url" class="form-control">
@@ -55,7 +55,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6">
                                     <button type="submit" class="btn btn-default">
-                                        <i class="fa fa-plus"></i> Add Article
+                                        <i class="fa fa-plus"></i> @lang('article.addArticle')
                                     </button>
                                 </div>
                             </div>

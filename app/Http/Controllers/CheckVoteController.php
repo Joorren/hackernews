@@ -48,6 +48,9 @@ class CheckVoteController extends Controller
             $post = DB::table('posts')
                         ->where('id', $postId)
                         ->value('id');
+            $title = DB::table('posts')
+                        ->where('id', $postId)
+                        ->value('name');
             if ($post>0) {
                 $userId = Auth::id();
                 $votes = DB::table('votes');
@@ -59,6 +62,7 @@ class CheckVoteController extends Controller
                 else {
                     $votes->insert(['vote' => $tinyVote, 'user_id' => $userId, 'post_id' => $postId]);
                 }
+                session(['success' => "You have $vote-voted '$title'."]);
             }
         }
         return redirect('/home');

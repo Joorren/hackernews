@@ -32,5 +32,6 @@ return [
     'register' => 'Register',
     'logout' => 'Logout',
     'toggleNav' => 'Toggle Navigation',
+    'overview' => 'Back to overview',
 
 ];

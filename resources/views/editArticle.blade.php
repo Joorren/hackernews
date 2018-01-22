@@ -7,7 +7,7 @@
 
                 @if (session('error'))
                     <div class="alert alert-danger">
-                        <strong>Whoops! Something went wrong!</strong>
+                        <strong>@lang('errors.failed')</strong>
                         <br>
                         <br>
                         <ul>
@@ -23,17 +23,17 @@
 
                 @if ($confirm)
                     <div class="bg-danger clearfix">
-                        Are you sure you want to delete this article?
+                        @lang('article.deleteConfirmText')
 
                         <form action="{{url("article/delete")}}" method="POST" class="pull-right">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <button name="delete" class="btn btn-danger" value="{{$article->id}}">
-                                <i class="fa fa-btn fa-trash" title="delete"></i> confirm delete
+                                <i class="fa fa-btn fa-trash" title="delete"></i> @lang('article.deleteConfirm')
                             </button>
 
                             <button name="cancel" class="btn" value="{{$article->id}}">
-                                <i class="fa fa-btn fa-trash" title="delete"></i> cancel
+                                <i class="fa fa-btn fa-trash" title="delete"></i> @lang('article.cancel')
                             </button>
 
                         </form>
@@ -41,14 +41,14 @@
                 @endif
 
                 <div class="breadcrumb">
-                    <a href="{{url("/")}}">← back to overview</a>
+                    <a href="{{url("/")}}">← @lang('pagination.overview')</a>
                 </div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
-                        Edit article
+                        @lang('article.editArticle')
                             <a href="{{url("article/delete/$article->id")}}" class="btn btn-danger btn-xs pull-right">
-                            <i class="fa fa-btn fa-trash" title="delete"></i> delete article
+                            <i class="fa fa-btn fa-trash" title="delete"></i> @lang('article.deleteArticle')
                         </a>
                     </div>
 
@@ -58,7 +58,7 @@
 
                             <!-- Article data -->
                             <div class="form-group">
-                                <label for="article-title" class="col-sm-3 control-label">Title (max. 255 characters)</label>
+                                <label for="article-title" class="col-sm-3 control-label">@lang('article.title')</label>
 
                                 <div class="col-sm-6">
                                     <input type="text" name="title" id="article-title" class="form-control" value="{{$article->name}}">
@@ -66,7 +66,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="article-url" class="col-sm-3 control-label">URL</label>
+                                <label for="article-url" class="col-sm-3 control-label">@lang('article.url')</label>
 
                                 <div class="col-sm-6">
                                     <input type="text" name="url" id="article-url" class="form-control" value="{{$article->url}}">
@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-6">
                                     <button type="submit" class="btn btn-default">
-                                        <i class="fa fa-pencil-square-o"></i> Edit Article
+                                        <i class="fa fa-pencil-square-o"></i> @lang('article.editArticle')
                                     </button>
                                 </div>
                             </div>
