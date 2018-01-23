@@ -46,7 +46,7 @@ class PostController extends Controller
 
         $points = $upVotes - $downVotes;
 
-        if ($points === 1) {
+        if ($points === 1 || $points === -1) {
             $points .= ' point';
         }
         else {
