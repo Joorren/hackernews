@@ -43,6 +43,8 @@ return [
     'downVoteOwner' => 'Je kan je eigen artikels niet downvoten',
     'upVoteOnce' => 'Je kan slechts één keer upvoten',
     'downVoteOnce' => 'Je kan slechts één keer downvoten',
+    'upVoteLogin' => 'Je moet inloggen om te voten',
+    'downVoteLogin' => 'Je moet inloggen om te voten',
 
     'deleteConfirmText' => 'Ben je zeker dat je dit artikel wil verwijderen?',
     'deleteConfirm' => 'Verwijderen Bevestigen',

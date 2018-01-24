@@ -20,7 +20,11 @@
                             @foreach($posts as $post)
                                 <li>
                                     <div class="vote">
-                                        @if ($post->user_id === Auth::id())
+                                        @if(Auth::guest())
+                                            <div class="form-inline upvote">
+                                                <i class="fa fa-btn fa-caret-up disabled upvote" title="@lang('article.upVoteLogin')"></i>
+                                            </div>
+                                        @elseif ($post->user_id === Auth::id())
                                             <div class="form-inline upvote">
                                                 <i class="fa fa-btn fa-caret-up disabled upvote" title="@lang('article.upVoteOwner')"></i>
                                             </div>
@@ -37,7 +41,11 @@
                                         </form>
                                         @endif
 
-                                        @if ($post->user_id === Auth::id())
+                                            @if(Auth::guest())
+                                                <div class="form-inline downvote">
+                                                    <i class="fa fa-btn fa-caret-down disabled downvote" title="@lang('article.downVoteLogin')"></i>
+                                                </div>
+                                            @elseif ($post->user_id === Auth::id())
                                             <div class="form-inline downvote">
                                                 <i class="fa fa-btn fa-caret-down disabled downvote" title="@lang('article.downVoteOwner')"></i>
                                             </div>

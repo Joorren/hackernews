@@ -43,6 +43,8 @@ return [
     'downVoteOwner' => 'You can\'t upvote your own articles',
     'upVoteOnce' => 'You can only upvote once',
     'downVoteOnce' => 'You can only downvote once',
+    'upVoteLogin' => 'You need to login to vote',
+    'downVoteLogin' => 'You need to login to vote',
 
     'deleteConfirmText' => 'Are you sure you want to delete this article?',
     'deleteConfirm' => 'Confirm Delete',
