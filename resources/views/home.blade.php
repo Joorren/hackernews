@@ -66,7 +66,12 @@
                                         <a href="{{$post->url}}" class="urlTitle">{{$post->name}}</a>
                                     </div>
                                     <div class="info">
-                                        {{call_user_func('\App\Http\Controllers\PostController::countVotes', $post->id)}}
+                                        {{$post->total}}
+                                        @if($post->total === '1' || $post->total === '-1')
+                                            point
+                                            @else
+                                            points
+                                        @endif
                                         | @lang('article.poster')
                                         {{$poster = call_user_func('\App\Http\Controllers\PostController::articlePoster', $post->user_id)}}
                                         |

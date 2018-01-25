@@ -29,7 +29,13 @@ class PostController extends Controller
      */
     static public function index()
     {
-        $posts = DB::table('posts')->get();
+
+        $posts = DB::table('votes')
+            ->join('posts', 'votes.post_id', '=', 'posts.id')
+            ->select(DB::raw('SUM(vote) as total'), 'posts.id as id', 'posts.user_id as user_id', 'posts.url as url', 'posts.name as name')
+            ->groupBy('posts.id')
+            ->orderBy('total', 'desc')
+            ->get();
 
         return view('home', ['posts' => $posts]);
     }
