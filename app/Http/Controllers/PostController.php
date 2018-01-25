@@ -32,7 +32,7 @@ class PostController extends Controller
 
         $posts = DB::table('votes')
             ->rightJoin('posts', 'votes.post_id', '=', 'posts.id')
-            ->select(DB::raw('SUM(vote) as total'), 'posts.id as id', 'posts.user_id as user_id', 'posts.url as url', 'posts.name as name')
+            ->select(DB::raw('COALESCE(SUM(vote),0) as total'), 'posts.id as id', 'posts.user_id as user_id', 'posts.url as url', 'posts.name as name')
             ->groupBy('posts.id')
             ->orderBy('total', 'desc')
             ->get();
